@@ -1,0 +1,26 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.1.2
+  TargetRailsVersion: 7.0.4
+  Exclude:
+    - 'db/**/*'
+    - "bin/**/*"
+    - "vendor/**/*"
+    - "public/**/*"
+    - "node_modules/**/*"
+    - "config/initializers/**/*"
+    - "config/environments/**/*"
+    - "lib/tasks/**/*"
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# Missing top-level class documentation comment.
+Style/Documentation:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 20
