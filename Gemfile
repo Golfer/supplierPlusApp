@@ -68,6 +68,7 @@ group :development do
   gem 'brakeman', '~> 5.3'
   gem 'bundler-audit', '~> 0.9.1'
   gem 'hotwire-livereload', '~> 1.2'
+  gem 'letter_opener', '~> 1.8'
 end
 
 group :test do
@@ -78,6 +79,7 @@ group :test do
 
   gem 'factory_bot_rails', '~> 6.2'
   gem 'faker', '~> 2.23'
+  gem 'rspec-rails', '~> 5.1'
   gem 'simplecov', '~> 0.21.2'
 end
 
@@ -92,6 +94,7 @@ end
 gem 'carrierwave', '~> 2.2'
 gem 'devise', '~> 4.8'
 gem 'dotenv-rails', '~> 2.8'
+gem 'pagy', '~> 5.10'
 gem 'rubocop', '~> 1.36'
 gem 'rubocop-rails', '~> 2.16'
 gem 'rubocop-rspec', '~> 2.13'

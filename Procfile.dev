@@ -1,3 +1,5 @@
-web: bin/rails server -p 3000
+redis: redis-server --port $REDIS_PORT
+web: bin/rails server -p $APP_DEV_PORT
+sidekiq: bundle exec sidekiq -p $SIDEKIQ_PORT
 js: yarn build --watch
 css: yarn build:css --watch

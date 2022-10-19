@@ -1,0 +1,22 @@
+<p style="color: green"><%= notice %></p>
+
+<%= link_to "New attachment", new_attachment_path, class: 'btn btn-outline-secondary' %>
+<h1>Attachments</h1>
+<table class="table table-hover" id="attachments">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">File</th>
+      <th scope="col">File path</th>
+      <th scope="col">description</th>
+      <th scope="col">action</th>
+    </tr>
+    </thead>
+  <tbody>
+    <% @attachments.each do |attachment| %>
+      <%= render attachment %>
+    <% end %>
+  </tbody>
+</table>
+
+

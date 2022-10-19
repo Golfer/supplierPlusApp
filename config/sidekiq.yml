@@ -1,0 +1,10 @@
+development:
+  :concurrency: 15
+
+production:
+  :concurrency: 10
+
+:queues:
+  - default
+  - height
+  - low

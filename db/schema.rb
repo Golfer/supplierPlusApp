@@ -10,13 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_14_202517) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_19_145113) do
   create_table "attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id"
     t.string "file"
     t.string "file_processed"
     t.string "description"
-    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_attachments_on_user_id"
@@ -30,6 +29,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_14_202517) do
     t.decimal "sell_price", precision: 10
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "attachment_id", null: false
+    t.index ["attachment_id"], name: "index_invoices_on_attachment_id"
     t.index ["user_id"], name: "index_invoices_on_user_id"
   end
 
@@ -44,5 +45,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_14_202517) do
   end
 
   add_foreign_key "attachments", "users"
+  add_foreign_key "invoices", "attachments"
   add_foreign_key "invoices", "users"
 end

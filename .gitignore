@@ -35,5 +35,5 @@
 
 /node_modules
 /.idea
- /public
+/public/*
 .DS_Store

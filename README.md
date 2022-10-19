@@ -22,3 +22,14 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+Generate random invoices file with number of ROWS
+Correct invoices DATA
+````
+    rake generate_csv_invoices:correct\[500\] 
+````
+
+Incorrect invoices DATA
+````
+    rake generate_csv_invoices:incorrect\[500\] 
+````

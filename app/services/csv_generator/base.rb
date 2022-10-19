@@ -8,6 +8,7 @@ module CsvGenerator
       @folder_path = Rails.public_path.join('invoices', 'files')
       FileUtils.mkdir_p(@folder_path)
       @filename = args[:filename] || "data_#{rows}.csv"
+      Rails.logger.info "Rows: #{rows}; Path: #{file_path}".blue
     end
 
     def processed

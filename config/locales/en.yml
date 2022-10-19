@@ -30,4 +30,9 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  validate:
+    bad_format: "is not formatted properly: %{day_format}"
+
+  mailer:
+    csv_failed_processing: 'Result of processing CSV file had problem. Please check result file.'
+    csv_success_processing: 'Result processing CSV file finished ok.'

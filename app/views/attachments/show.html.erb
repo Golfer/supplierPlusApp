@@ -1,0 +1,22 @@
+<p style="color: green"><%= notice %></p>
+
+
+<%= render @attachment %>
+<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAttachmentInvoices" aria-expanded="false" aria-controls="collapseAttachmentInvoices">
+  Invoices
+</button>
+
+<div class="collapse" id="collapseAttachmentInvoices">
+  <div class="card card-body">
+    <% @invoices.each do |invoice| %>
+      <%= render partial: 'invoice', locals: {invoice: invoice} %>
+    <% end %>
+  </div>
+</div>
+
+<div>
+  <%= link_to "Edit this attachment", edit_attachment_path(@attachment) %> |
+  <%= link_to "Back to attachments", attachments_path %>
+
+  <%= button_to "Destroy this attachment", @attachment, method: :delete %>
+</div>

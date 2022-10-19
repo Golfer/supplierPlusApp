@@ -1,0 +1,15 @@
+<tr id="<%= dom_id attachment %>">
+  <th scope="row"><%= attachment.id %></th>
+  <td><%=  link_to 'invoice file', file_download_attachment_path(attachment) %></td>
+  <td>
+    <%- if attachment.file_processed.present? %>
+      <%= link_to 'File Processed', file_processed_download_attachment_path(attachment) %>
+    <% end %>
+  </td>
+  <td><%= attachment.file_identifier %></td>
+  <td><%= attachment.description %></td>
+  <td>
+    <%= link_to "Show", attachment %>
+    <%= link_to "Delete", attachment, data: { "turbo-method": :delete } %>
+  </td>
+</tr>
