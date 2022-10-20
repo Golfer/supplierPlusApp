@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Invoice, type: :model do
-  subject(:invoice) { FactoryBot.build(:invoice) }
+  subject(:invoice) { build(:invoice) }
 
-  let(:inccorect_due_date) { FactoryBot.build(:invoice, :incorrect_date) }
-  let(:inccorect_amount) { FactoryBot.build(:invoice, :incorrect_amount) }
+  let(:inccorect_due_date) { build(:invoice, :incorrect_date) }
+  let(:inccorect_amount) { build(:invoice, :incorrect_amount) }
 
   describe 'included fields' do
     it { is_expected.to respond_to(:invoice_code) }

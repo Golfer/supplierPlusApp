@@ -3,6 +3,8 @@ FactoryBot.define do
     sequence(:email) { |n| "#{Faker::Internet.email}-#{n}" }
     password { Faker::Internet.password }
 
-    # attachments { FactoryBot.create(:attachment) }
+    trait :admin do
+      admin { true }
+    end
   end
 end

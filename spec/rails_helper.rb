@@ -8,11 +8,15 @@ if ENV['RAILS_ENV'] == 'test'
   require 'simplecov'
   SimpleCov.start 'rails' do
     load_profile 'rails'
+
+    add_group 'Services', 'app/services'
+    add_group 'Uploaders', 'app/uploaders'
     # Comment this because I do not used it
     add_filter '/config/**/*'
     add_filter 'app/channels'
     add_filter '/app/helpers'
     add_filter '/app/views'
+    add_filter 'app/jobs/application_job.rb'
   end
 end
 
@@ -77,9 +81,12 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-
+  config.include FactoryBot::Syntax::Methods
   config.include Shoulda::Matchers::ActiveModel, type: :model
   config.include Shoulda::Matchers::ActiveRecord, type: :model
+  config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :view
 
   config.before do
     Sidekiq::Worker.clear_all

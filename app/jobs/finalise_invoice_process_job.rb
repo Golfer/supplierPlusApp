@@ -9,13 +9,13 @@ class FinaliseInvoiceProcessJob < SidekiqJob
     raise 'Cant find attachment' unless attachment
 
     if attachment.file_processed.present?
-      Rails.logger.debug { "Has Failed Invoices :( #{attachment_id}, #{user_id}" }
+      Rails.logger.info { "Failed parser Invoices :( #{attachment_id}, #{user_id}" }
       InvoiceMailer.csv_processing(attachment.user.email, attachment.id, failed: true).deliver_later(wait: 5.seconds)
     else
-      InvoiceMailer.csv_processing(attachment.email, attachment.id).deliver_later(wait: 5.seconds)
-      Rails.logger.debug { "All invoices valid and inserted correctly! #{attachment_id}, #{user_id}" }
+      InvoiceMailer.csv_processing(attachment.user.email, attachment.id).deliver_later(wait: 5.seconds)
+      Rails.logger.info { "All invoices valid and inserted correctly! #{attachment_id}, #{user_id}" }
     end
 
-    Rails.logger.debug { "Work after finish all UserInvoicingProcessJob #{attachment_id}, #{user_id}" }
+    Rails.logger.info { "Work after finish all UserInvoicingProcessJob #{attachment_id}, #{user_id}" }
   end
 end

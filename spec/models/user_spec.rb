@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  subject(:user) { FactoryBot.build(:user) }
+  subject(:user) { build(:user) }
 
   describe 'included fields' do
     it { is_expected.to respond_to(:email) }

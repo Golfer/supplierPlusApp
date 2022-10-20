@@ -1,22 +1,23 @@
 <p style="color: green"><%= notice %></p>
 
-
+<br>
 <%= render @attachment %>
+<br>
+<div>
+  <%= link_to "Back to attachments", attachments_path, class: "btn btn-info" %> |
+  <%= link_to "Edit this attachment", edit_attachment_path(@attachment), class: "btn btn-success" %> |
+  <%= link_to "Delete", @attachment, data: { "turbo-method": :delete }, class: "btn btn-warning" %> |
+</div>
+<br>
 <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAttachmentInvoices" aria-expanded="false" aria-controls="collapseAttachmentInvoices">
-  Invoices
+  (Open/Close) Invoices
 </button>
+<br>
 
-<div class="collapse" id="collapseAttachmentInvoices">
+<div class="collapse show" id="collapseAttachmentInvoices">
   <div class="card card-body">
-    <% @invoices.each do |invoice| %>
-      <%= render partial: 'invoice', locals: {invoice: invoice} %>
-    <% end %>
+    <%= render partial: 'invoices/table_invoices' %>
   </div>
 </div>
 
-<div>
-  <%= link_to "Edit this attachment", edit_attachment_path(@attachment) %> |
-  <%= link_to "Back to attachments", attachments_path %>
 
-  <%= button_to "Destroy this attachment", @attachment, method: :delete %>
-</div>

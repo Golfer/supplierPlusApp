@@ -33,6 +33,9 @@ en:
   validate:
     bad_format: "is not formatted properly: %{day_format}"
 
+  time:
+    formats:
+      default: '%Y-%m-%d'
   mailer:
     csv_failed_processing: 'Result of processing CSV file had problem. Please check result file.'
     csv_success_processing: 'Result processing CSV file finished ok.'

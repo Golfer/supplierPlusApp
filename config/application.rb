@@ -20,5 +20,9 @@ module SupplierPlusApp
     # config.eager_load_paths << Rails.root.join("extras")
     #
     config.active_job.queue_adapter = :sidekiq
+
+    # autoload lib directory
+    config.autoload_paths << "#{Rails.root}/lib"
+    config.eager_load_paths << "#{Rails.root}/lib"
   end
 end

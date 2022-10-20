@@ -5,10 +5,15 @@
 <table class="table table-hover" id="attachments">
   <thead>
     <tr>
+      <% if current_user.admin? %>
+        <th scope="col">User</th>
+      <% end %>
       <th scope="col">#</th>
       <th scope="col">File</th>
-      <th scope="col">File path</th>
+      <th scope="col">File(Problem)</th>
       <th scope="col">description</th>
+      <th scope="col"></th>
+      <th scope="col">Created</th>
       <th scope="col">action</th>
     </tr>
     </thead>

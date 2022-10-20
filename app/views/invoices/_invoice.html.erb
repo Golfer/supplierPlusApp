@@ -1,22 +1,18 @@
-<div id="<%= dom_id invoice %>">
-  <p>
-    <strong>User:</strong>
-    <%= invoice.user %>
-  </p>
-
-  <p>
-    <strong>Amount:</strong>
-    <%= invoice.amount %>
-  </p>
-
-  <p>
-    <strong>Due date:</strong>
-    <%= invoice.due_date %>
-  </p>
-
-  <p>
-    <strong>Sell price:</strong>
-    <%= invoice.sell_price %>
-  </p>
-
-</div>
+<th scope="row">
+  <span><%= invoice.invoice_code %></span>
+</th>
+<th>
+  <span><%= invoice.amount %></span>
+</th>
+<th>
+  <span><%= invoice.sell_price %></span>
+</th>
+<th>
+  <span><%= l(invoice.due_date) %></span>
+</th>
+<th>
+  <span><%= l(invoice.created_at) %></span>
+</th>
+<th>
+  <span><%= link_to "Delete", invoice, data: { "turbo-method": :delete }, class: "btn btn-warning" %></span>
+</th>

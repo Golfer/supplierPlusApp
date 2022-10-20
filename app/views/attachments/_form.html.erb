@@ -1,5 +1,5 @@
 <%= form_with(model: attachment) do |form| %>
-  <%= form.hidden_field :user_id, value: User.first.id %>
+  <%= form.hidden_field :user_id, value: current_user.id %>
   <% if attachment.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(attachment.errors.count, "error") %> prohibited this attachment from being saved:</h2>

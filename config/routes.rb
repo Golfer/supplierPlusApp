@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   require 'sidekiq/web'
-  mount Sidekiq::Web => '/sidekiq'
+
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
   root to: 'attachments#index'
 
   devise_for :users
-  resources :invoices
+  resources :invoices, only: %i[index show destroy]
   resources :attachments do
     member do
       get :file_download

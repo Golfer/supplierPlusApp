@@ -1,35 +1,49 @@
-# README
+#  Supplier Test App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Prepare to run App 
+In file .env can check and edit this ENV variables
 
-Things you may want to cover:
+* Prepare DB
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-Generate random invoices file with number of ROWS
-Correct invoices DATA
+Create db if not present
 ````
-    rake generate_csv_invoices:correct\[500\] 
+rake db:create
+````
+Run migration and seed DB
+````
+bin/setup
 ````
 
-Incorrect invoices DATA
+
+Generate file with random invoices(can set number of ROWS), can generate incorrect data
+
+Correct invoice
 ````
-    rake generate_csv_invoices:incorrect\[500\] 
+rake generate_csv_invoices:correct\[5000\] 
 ````
+
+Incorrect invoice
+````
+rake generate_csv_invoices:incorrect\[5000\] 
+````
+
+This find this files on path [public/invoices/files/correct_rows_count.csv]
+
+* Run application 
+
+````
+bin/dev
+````
+
+
+
+* use Rspec for test
+
+Run
+````
+rspec
+````
+
+User can see only own Invoices. Admin have access to all invoices
+
+test admin: admin@supplier_plus.com / qwerty (after run rake db:seed) 

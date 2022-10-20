@@ -2,13 +2,5 @@
 
 <h1>Invoices</h1>
 
-<div id="invoices">
-  <% @invoices.each do |invoice| %>
-    <%= render invoice %>
-    <p>
-      <%= link_to "Show this invoice", invoice %>
-    </p>
-  <% end %>
-</div>
 
-<%= link_to "New invoice", new_invoice_path %>
+<%= render partial: 'table_invoices' %>

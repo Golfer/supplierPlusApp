@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Attachment, type: :model do
-  subject(:attachment) { FactoryBot.create(:attachment) }
+  subject(:attachment) { create(:attachment) }
 
   describe 'included fields' do
     it { is_expected.to respond_to(:file) }

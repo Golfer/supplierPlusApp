@@ -1,14 +1,15 @@
 class AttachmentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_attachment, only: %i[show edit update destroy file_download file_processed_download]
 
   # GET /attachments or /attachments.json
   def index
-    @attachments = Attachment.all
+    @attachments = current_user.admin? ? Attachment.all : Attachment.where(user: current_user)
   end
 
   # GET /attachments/1 or /attachments/1.json
   def show
-    @invoices = @attachment.invoices
+    @pagy, @invoices = pagy(@attachment.invoices)
   end
 
   # GET /attachments/new
@@ -40,6 +41,7 @@ class AttachmentsController < ApplicationController
   def update
     respond_to do |format|
       if @attachment.update(attachment_params)
+        ParserUserInvoicesJob.perform_async(@attachment.id)
         format.html { redirect_to attachment_url(@attachment), notice: 'Attachment was successfully updated.' }
         format.json { render :show, status: :ok, location: @attachment }
       else

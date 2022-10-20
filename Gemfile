@@ -102,3 +102,5 @@ gem 'rubocop-rspec', '~> 2.13'
 gem 'services', '~> 9.0'
 gem 'sidekiq', '~> 6.5'
 gem 'yard', '~> 0.9.28'
+
+gem "devise-bootstrap-views", "~> 1.1"
