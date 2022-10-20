@@ -12,7 +12,7 @@ class FinaliseInvoiceProcessJob < SidekiqJob
       Rails.logger.debug { "Has Failed Invoices :( #{attachment_id}, #{user_id}" }
       InvoiceMailer.csv_processing(attachment.user.email, attachment.id, failed: true).deliver_later(wait: 5.seconds)
     else
-      InvoiceMailer.csv_processing(attachment.user.email, attachment.id).deliver_later(wait: 5.seconds)
+      InvoiceMailer.csv_processing(attachment.email, attachment.id).deliver_later(wait: 5.seconds)
       Rails.logger.debug { "All invoices valid and inserted correctly! #{attachment_id}, #{user_id}" }
     end
 

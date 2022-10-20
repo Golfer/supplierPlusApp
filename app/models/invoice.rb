@@ -24,7 +24,7 @@ class Invoice < ApplicationRecord
   end
 
   def date_to_invoices
-    return unless due_date.present?
+    return if due_date.nil?
 
     (due_date.to_date - Time.zone.today).to_i
   end

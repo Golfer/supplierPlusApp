@@ -289,6 +289,8 @@ GEM
     services (9.0.0)
       gem_config (~> 0.3)
       rails (>= 6.0)
+    shoulda-matchers (5.2.0)
+      activesupport (>= 5.2.0)
     sidekiq (6.5.7)
       connection_pool (>= 2.2.5)
       rack (~> 2.0)
@@ -376,6 +378,7 @@ DEPENDENCIES
   rubocop-rspec (~> 2.13)
   selenium-webdriver
   services (~> 9.0)
+  shoulda-matchers (~> 5.2)
   sidekiq (~> 6.5)
   simplecov (~> 0.21.2)
   sprockets-rails
