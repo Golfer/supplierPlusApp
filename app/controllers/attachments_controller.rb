@@ -28,7 +28,7 @@ class AttachmentsController < ApplicationController
       if @attachment.save
         ParserUserInvoicesJob.perform_async(@attachment.id)
 
-        format.html { redirect_to attachments_path, notice: 'Attachment was successfully created.' }
+        format.html { redirect_to attachments_path, notice: 'Attachment was successfully created. Please wait email after finish processing Import invoices' }
         format.json { render :show, status: :created, location: @attachment }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -41,6 +41,7 @@ class AttachmentsController < ApplicationController
   def update
     respond_to do |format|
       if @attachment.update(attachment_params)
+        @attachment.update(finish_processing: false)
         ParserUserInvoicesJob.perform_async(@attachment.id)
         format.html { redirect_to attachment_url(@attachment), notice: 'Attachment was successfully updated.' }
         format.json { render :show, status: :ok, location: @attachment }

@@ -7,15 +7,22 @@
   <td scope="row">
     <%= link_to attachment.file_identifier, attachment %>
   </td>
-  <td><%=  link_to 'File(uploaded)', file_download_attachment_path(attachment) %></td>
+  <td><%=  link_to '<span class="badge text-bg-info">File(uploaded)</span>'.html_safe, file_download_attachment_path(attachment) %></td>
   <td>
     <%- if attachment.file_processed.present? %>
-      <%= link_to 'File(invoices error)', file_processed_download_attachment_path(attachment) %>
+      <%= link_to '<span class="badge text-bg-warning">File(invoices error)</span>'.html_safe, file_processed_download_attachment_path(attachment) %>
     <% end %>
   </td>
   <td><%= attachment.file_identifier %></td>
   <td><%= attachment.description %></td>
   <td><%= l(attachment.created_at) %></td>
+  <td>
+    <% if attachment.finish_processing %>
+      <span class="badge text-bg-success">Done</span>
+    <% else %>
+      <span class="badge text-bg-info">Process...</span>
+  <% end %>
+  </td>
   <td>
     <%= link_to "Delete", attachment, data: { "turbo-method": :delete } %>
   </td>

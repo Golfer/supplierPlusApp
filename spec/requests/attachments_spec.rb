@@ -18,6 +18,7 @@ RSpec.describe 'Attachments', type: :request do
       sign_in user
       get attachments_path
     end
+
     it {
       post attachments_path, params: {
         attachment: {
@@ -33,6 +34,7 @@ RSpec.describe 'Attachments', type: :request do
         sign_in user
         get attachments_path
       end
+
       it {
         post attachments_path, params: {
           attachment: {
@@ -69,7 +71,7 @@ RSpec.describe 'Attachments', type: :request do
         }
       }
 
-      expect(response).to have_http_status(302)
+      expect(response).to have_http_status(:found)
     }
   end
 end

@@ -70,5 +70,5 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { host: ENV['APP_DEV_DOMAIN'], port: ENV['APP_DEV_PORT'] }
+  config.action_mailer.default_url_options = { :host => ENV['APP_DEV_DOMAIN'] }
 end

@@ -1,10 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe InvoiceFileGenerators::Csv::Correct, type: :model do
-
   describe '#processed' do
     before(:all) do
-      FactoryBot.create(:user)
+      create(:user)
     end
 
     it {

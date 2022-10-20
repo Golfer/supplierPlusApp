@@ -1,3 +1,4 @@
+# Send Email notice for usesr after finish precessed Attachment file
 class FinaliseInvoiceProcessJob < SidekiqJob
   include Sidekiq::Worker
   queue_as :low
@@ -5,6 +6,7 @@ class FinaliseInvoiceProcessJob < SidekiqJob
   def perform(user_id, attachment_id)
     user = User.find(user_id)
     attachment = Attachment.find(attachment_id)
+    attachment.update(finish_processing: true)
     raise 'Cant find user' unless user
     raise 'Cant find attachment' unless attachment
 

@@ -1,3 +1,7 @@
+# Create Invoice record after parse CSV file
+# When find failed row in csv file
+# insert this row to new file with problem invoices
+# If invoice valid create and relate this invoice to Attachment
 class UserInvoicingProcessJob < SidekiqJob
   queue_as :default
 
@@ -11,8 +15,7 @@ class UserInvoicingProcessJob < SidekiqJob
     if invoice.invalid?
       return invalid_csv_line_insert(attachment,
                                      invoice.errors.full_messages.join(','),
-                                     invoice_code, amount, due_date
-                                     )
+                                     invoice_code, amount, due_date)
     end
 
     invoice.save!
@@ -20,9 +23,10 @@ class UserInvoicingProcessJob < SidekiqJob
 
   private
 
+  # Insert failed invoice row to file with problem invoices
   def invalid_csv_line_insert(attachment, errors, *args)
     invoice_code, amount, due_date = args.flatten
-    folder_path = Rails.root.join("uploads/#{attachment.class.to_s.underscore}/file_processed/#{attachment.id}")
+    folder_path = Rails.root.join("public/uploads/#{attachment.class.to_s.underscore}/file_processed/#{attachment.id}")
     FileUtils.mkdir_p(folder_path)
     invoice_file_processed = Rails.root.join(folder_path, "Incorrect_#{attachment.file_identifier}")
 

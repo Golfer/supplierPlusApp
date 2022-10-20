@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   require 'sidekiq/web'
 
-  authenticate :user, lambda { |u| u.admin? } do
+  authenticate :user, ->(u) { u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end
 
@@ -16,6 +16,6 @@ Rails.application.routes.draw do
       get :file_processed_download
     end
   end
-  resources :users
+  resources :users, only: %i[index show destroy]
   resources :dashboard, only: :index
 end

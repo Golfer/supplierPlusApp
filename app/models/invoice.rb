@@ -12,6 +12,8 @@ class Invoice < ApplicationRecord
 
   after_validation :calculate_sell_price
 
+  # Precalculate sell price
+  # amount - amount * discount_persent
   def calculate_sell_price
     self.sell_price = amount.to_i - (amount.to_i * discount_persent)
   end

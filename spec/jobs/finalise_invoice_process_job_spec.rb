@@ -1,13 +1,14 @@
-require "rails_helper"
+require 'rails_helper'
 
-RSpec.describe FinaliseInvoiceProcessJob, :type => :job do
-  let(:attachment) { FactoryBot.create(:attachment) }
+RSpec.describe FinaliseInvoiceProcessJob, type: :job do
+  let(:attachment) { create(:attachment) }
 
-  describe "#perform_later" do
+  describe '#perform_later' do
     before(:all) do
       Sidekiq::Testing.fake!
     end
-    it "uploads a backup" do
+
+    it 'uploads a backup' do
       ActiveJob::Base.queue_adapter = :test
 
       expect do

@@ -1,11 +1,7 @@
 <%= "Dear #{@user&.email}!" %>
 
 <% - if @failed %>
-  <%= "Your file CSV invoices import has problem. Please check it out" %>
-  <%= link_to 'File Processed', '#' %>
-  <%#= link_to 'File Processed', file_processed_download_attachment_url(@attachment) %>
+  <%= "Your file CSV invoices import has problem. Please check it on App" %>
 <% else %>
-  <%= "Your file already finished parse. " %>
-  <%=  link_to 'Invoice file', '#' %>
-  <%#=  link_to 'Invoice file', file_download_attachment_url(@attachment) %>
+  <%= "Your file already finished parse. Please check on App" %>
 <% end %>

@@ -1,16 +1,13 @@
-require "rails_helper"
+require 'rails_helper'
 
-RSpec.describe ParserUserInvoicesJob, :type => :job do
-  let(:attachment) { FactoryBot.create(:attachment) }
-  let(:attachment_correct) { FactoryBot.create(:attachment, :file_correct_5000) }
-  let(:attachment_incorrect) { FactoryBot.create(:attachment, :file_incorrect_5000) }
+RSpec.describe ParserUserInvoicesJob, type: :job do
+  let(:attachment) { create(:attachment) }
+  let(:attachment_correct) { create(:attachment, :file_correct_50) }
+  let(:attachment_incorrect) { create(:attachment, :file_incorrect_50) }
 
-  describe "#perform_async" do
-    before(:all) do
+  describe '#perform_async' do
+    it 'correct run parser ParserUserInvoicesJob with params attachment' do
       Sidekiq::Testing.fake!
-    end
-
-    it "correct run parser ParserUserInvoicesJob with params attachment" do
       ActiveJob::Base.queue_adapter = :test
 
       expect do
@@ -26,25 +23,17 @@ RSpec.describe ParserUserInvoicesJob, :type => :job do
       end.to change(described_class.jobs, :size).by(1)
     end
 
-    xit "Run parser CSV job ParserUserInvoicesJob with incorrected Invoices" do
-      ActiveJob::Base.queue_adapter = :inline
-
-      expect do
-        described_class.perform_async(attachment_incorrect.id)
-      end.to change(described_class.jobs, :size).by(1)
-    end
-
     it 'raise error without params' do
+      Sidekiq::Testing.inline!
       ActiveJob::Base.queue_adapter = :test
 
       expect do
         described_class.new.perform
       end.to raise_error(ArgumentError)
-
-
     end
 
     it 'raise error with wrong ID' do
+      Sidekiq::Testing.inline!
       ActiveJob::Base.queue_adapter = :test
       expect do
         described_class.new.perform('12312')
