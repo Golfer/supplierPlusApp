@@ -25,6 +25,19 @@ The test file includes five thousand rows and includes invalid rows.
 4. Customer can see an upload report and understand errors related to CSV file row processing.
 ````
 
+
+* Functional
+  Basic description
+
+For login Admin pre-setup user admin@supplier.com / qwerty123 (after run rake db:seed)
+
+User can see only own Invoices.
+Admin have access to all invoices
+Object Attachment for upload CSV invoices from User
+At Model Invoice has process precalculate sell_price according amount and due_date
+
+* Integrate coverage checks (Simplecov). Check Percent at folder [coverage] open index.html
+
 * Prepare to run App 
 In file .env can check and edit this ENV variables
 
@@ -58,20 +71,6 @@ bin/dev
 * use Rspec test
 
 run test
-````
-rspec
-````
-* Functional 
-Basic description
-
-For login Admin pre-setup user admin@supplier.com / qwerty123 (after run rake db:seed)
-
-User can see only own Invoices. 
-Admin have access to all invoices
-Object Attachment for upload CSV invoices from User
-At Model Invoice has process precalculate sell_price according amount and due_date
-
-* Integrate coverage checks (Simplecov). Check Percent at folder [coverage] open index.html 
 ````
 rspec
 ````
