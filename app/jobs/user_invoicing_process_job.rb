@@ -13,9 +13,14 @@ class UserInvoicingProcessJob < SidekiqJob
     invoice = Invoice.new(attachment:, user:, invoice_code:, amount:, due_date:)
 
     if invoice.invalid?
-      return invalid_csv_line_insert(attachment,
-                                     invoice.errors.full_messages.join(','),
-                                     invoice_code, amount, due_date)
+      invoice.description = invoice.errors.full_messages.join(',')
+      invoice.save(validate: false)
+
+      if save_to_scv?
+        invalid_csv_line_insert(attachment,
+                                invoice.errors.full_messages.join(','),
+                                invoice_code, amount, due_date)
+      end
     end
 
     invoice.save!
@@ -35,5 +40,9 @@ class UserInvoicingProcessJob < SidekiqJob
     end
     attachment.file_processed = file_processed
     attachment.save!
+  end
+
+  def save_to_scv?
+    ActiveModel::Type::Boolean.new.cast(ENV.fetch("ERROR_LOGG_TO_CSV", false))
   end
 end

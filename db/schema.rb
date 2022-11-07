@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_20_210757) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_27_112549) do
   create_table "attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id"
     t.string "file"
@@ -31,6 +31,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_20_210757) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "attachment_id", null: false
+    t.text "description"
     t.index ["attachment_id"], name: "index_invoices_on_attachment_id"
     t.index ["user_id"], name: "index_invoices_on_user_id"
   end

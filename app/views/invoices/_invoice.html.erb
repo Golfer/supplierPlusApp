@@ -8,7 +8,10 @@
   <span><%= invoice.sell_price %></span>
 </th>
 <th>
-  <span><%= l(invoice.due_date) %></span>
+  <span><%= due_date(invoice) %></span>
+</th>
+<th>
+  <span><%= invoice.description %></span>
 </th>
 <th>
   <span><%= l(invoice.created_at) %></span>

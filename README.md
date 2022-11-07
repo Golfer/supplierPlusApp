@@ -1,7 +1,4 @@
-#  Supplier Test App
-# Original Test assignment
-````
-We have developed a simple assignment to imitate a real system situation in SupplierPlus. The test assignment should show the candidates' ability of system thinking, coding style, code versioning and testing skills.
+# Test App
 
 # Feature: Invoice upload
 
